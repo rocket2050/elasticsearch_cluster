@@ -1,0 +1,88 @@
+---
+# Setup Java on System
+- name: determine if Java is already installed
+  shell: which java
+  register: oracle_java_task_installed
+  changed_when: oracle_java_task_installed.rc != 0
+  failed_when: no
+
+# Setup Debian Java PPA Repo
+- name: debian | ubuntu | add java ppa repo
+  apt_repository:
+    repo='ppa:webupd8team/java'
+    state=present
+
+# Update Apt Package
+- name: Update and upgrade apt packages
+  become: true
+  apt:
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
+# Accept the Oracle Java License
+- name: auto accept oracle jdk license
+  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+  sudo: yes
+
+# Install Oracle Java 8 onto the server
+- name: ensure Java is installed
+  become: true
+  apt: name=oracle-java8-installer state=present force=yes
+
+# Set a version of java as default
+- name: set Java version as default
+  apt:
+    name="oracle-java{{ oracle_java_version }}-set-default"
+
+
+# Copy Environment file with JAVA_HOME
+- name: Copy the Environment file
+  template:
+    src: "{{ environment_template }}"
+    dest: /etc/environment
+  become: true
+
+#- name: download elastic search for standalone
+#  become: true
+#  get_url: 
+#    url: "https://packages.elastic.co/GPG-KEY-elasticsearch"
+#    dest: /opt
+#    owner: root
+#    mode: 0755
+
+# Install apt-transports package required for Installation of Elasticsearch
+- name: install apt-transports
+  apt:
+   name: apt-transport-https
+   state: present
+  become: true
+
+
+#- name: Add Elasticsearch repository.
+#  apt_repository:
+#    repo: "deb https://artifacts.elastic.co/packages/5.x/apt stable main"
+#    state: present
+#  become: true
+  
+#- name: add this to source list
+#  shell: "tee -a /etc/apt/sources.list.d/elastic-5.x.list"
+#  become: true
+
+- name: get present working directory
+  shell: pwd
+  register: directory
+  
+- name: Download the elasticsearch package for 5.x
+  get_url:
+    url: "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.1.deb"
+    dest: "{{ directory.stdout }}"
+  become: true
+
+- name: Install elasticsearch package
+  shell: "dpkg -i elasticsearch-5.5.1.deb"
+  become: true
+
+- name: update the defaults
+  command: "update-rc.d elasticsearch defaults"
+  become: true
+

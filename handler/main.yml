@@ -1,0 +1,8 @@
+---
+
+#- name: start_elasticsearch
+#  service:
+#    name: elasticsearch
+#    state: started
+ #   enabled: true
+ # become: true
