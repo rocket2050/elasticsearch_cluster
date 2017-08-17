@@ -1,6 +1,21 @@
 ---
-- hosts: "{{ host }}"
+#- hosts: etcd
+
+#  roles:
+#    - role: osm_elasticSearch
+#      es_etc_node_master: "true"
+#      es_etc_node_data: "false"
+
+- hosts: master
 
   roles:
-    - role: elasticsearch
+    - role: osm_elasticSearch
+      es_etc_node_master: "false"
+      es_etc_node_data: "true"
 
+- hosts: etcd
+
+  roles:
+    - role: osm_elasticSearch
+      es_etc_node_master: "true"
+      es_etc_node_data: "false"

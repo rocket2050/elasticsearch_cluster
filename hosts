@@ -1,0 +1,15 @@
+#[cluster:children]
+#etcd
+#master
+
+[cluster]
+192.168.0.46
+192.168.0.47
+
+
+
+[node]
+192.168.0.46
+
+[master]
+192.168.0.47
