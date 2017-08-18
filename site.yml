@@ -3,13 +3,13 @@
 - hosts: node
 
   roles:
-    - role: osm_elasticSearch
+    - role: elasticsearch_cluster
       es_etc_node_master: "false"
       es_etc_node_data: "true"
 
 - hosts: master
 
   roles:
-    - role: osm_elasticSearch
+    - role: elasticsearch_cluster
       es_etc_node_master: "true"
       es_etc_node_data: "false"
