@@ -1,5 +1,6 @@
-# elasticSearch_cluster
-This repo controls the Ansible Role for ElasticSearch cluster.
+# elasticsearch_cluster
+
+Ansible role for 5.x Elasticsearch cluster setup for centos/Redhat and Ubuntu.
 
 # Role Name
 elasticSearch cluster
