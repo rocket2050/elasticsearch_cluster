@@ -64,6 +64,25 @@ An example of a two server deployment is shown below. The first server holds the
 
 ```
 
+# Check Cluster State
+
+From any of your Elasticsearch servers, run this command to print the state of the cluster:
+```
+curl -XGET 'http://server_ip:9200/_cluster/state?pretty'
+```
+
+Run this coomand on master node for create indices.
+```
+curl -XPUT 'localhost:9200/customer?pretty&pretty'
+```
+
+From any of your Elasticsearch servers, run this command to print the  indices of the cluster:
+
+```
+curl -XGET 'localhost:9200/_cat/indices?v&pretty'
+```
+
+
 # License
 
 BSD
