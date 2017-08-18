@@ -13,6 +13,7 @@ elasticSearch cluster
 # Basic Elasticsearch Configuration
 All Elasticsearch configuration parameters are supported. This is achieved using a configuration map parameter 'es_config' which is serialized into the elasticsearch.yml file.
 
+```
  - name: Elasticsearch with custom configuration
   hosts: localhost
   roles:
@@ -29,13 +30,16 @@ All Elasticsearch configuration parameters are supported. This is achieved using
         } 
     }
 
+```
+
 ` The role utilises Elasticsearch version defaults. The following should be set to ensure a successful cluster forms.
 
-es_config['http.port'] - the http port for the node
-es_config['transport.tcp.port'] - the transport port for the node
-es_config['discovery.zen.ping.unicast.hosts'] - the unicast discovery list, in the comma separated format "<host1>,<host2>" (typically the clusters dedicated masters)
-es_config['network.host'] - sets both network.bind_host and network.publish_host to the same host value. The network.bind_host setting allows to control the host different network components will bind on.
-
+```
+ es_config['http.port'] - the http port for the node
+ es_config['transport.tcp.port'] - the transport port for the node
+ es_config['discovery.zen.ping.unicast.hosts'] - the unicast discovery list, in the comma separated format "<host1>,<host2>" (typically the clusters dedicated masters)
+ es_config['network.host'] - sets both network.bind_host and network.publish_host to the same host value. The network.bind_host setting allows to control the host different network components will bind on.
+```
 
 # Multi Node Server Installations
 
