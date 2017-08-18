@@ -8,7 +8,7 @@ elasticSearch cluster
 
  This role was built using [Default_Variables](https://github.com/opstree-ansible/elasticsearch_cluster/blob/master/defaults/main.yml).
 
- You can set the values accordingly.
+ You can set the values of elastic search configuration according to your infrastructure.
 
 # Basic Elasticsearch Configuration
 All Elasticsearch configuration parameters are supported. This is achieved using a configuration map parameter 'es_config' which is serialized into the elasticsearch.yml file.
