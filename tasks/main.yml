@@ -56,15 +56,4 @@
 - name: Start Elasticsearch.
   service: name=elasticsearch state=started enabled=yes
   become: true
-  when: ansible_os_family == 'Debian'
-
-- name: Start Elasticsearch
-  systemd:
-    name: elasticsearch
-    state: started
-    enabled: true
-  become: true
-  when: ansible_os_family == 'RedHat'
-
-#- name: Make sure Elasticsearch is running before proceeding.
-#  wait_for: host={{ elasticsearch_network_host }} port={{ elasticsearch_http_port }} delay=3 timeout=300
+#  when: ansible_os_family == 'Debian'
