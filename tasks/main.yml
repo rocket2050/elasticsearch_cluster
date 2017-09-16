@@ -21,29 +21,6 @@
     group: elasticsearch
     mode: 0640
 
-#- name: Copy Limits.conf file
-#  template:
-#    src: "{{ limits }}"
-#    dest: /etc/security/limits.conf 
-#    owner: root
-#    group: elasticsearch
-#   mode: 0640
-
-#- name: Copy Common-Session File to Pam.d
-#  template:
-#    src: "{{ common_session }}"
-#    dest: /etc/pam.d/common-session
-#    owner: root
-#    group: elasticsearch
-#    mode: 0640
-
-#- name: Copy common-session-noninteractive file to pam.d
-#  template:
-#    src: "{{ common_session_ni }}"
-#    dest: /etc/pam.d/common-session-noninteractive
-#    owner: root
-#    group: elasticsearch
-#   mode: 0640
 
 - name: copy jvm.option file to /etc
   template:
